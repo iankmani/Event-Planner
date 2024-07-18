@@ -2,6 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./SignUp.css";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const validationSchema = Yup.object({
@@ -123,11 +124,10 @@ const SignUp = () => {
               ) : null}
             </div>
 
-            
-              <button type="submit">sign up</button>
-            
+            <button type="submit">sign up</button>
+
             <p>
-              Already have an account? <a href="">log in</a>
+              Already have an account? <Link to="/login">log in</Link>
             </p>
           </div>
         </form>
