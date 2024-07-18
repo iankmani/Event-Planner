@@ -123,9 +123,9 @@ const SignUp = () => {
               ) : null}
             </div>
 
-            <div className="SignUp_button">
+            
               <button type="submit">sign up</button>
-            </div>
+            
             <p>
               Already have an account? <a href="">log in</a>
             </p>
