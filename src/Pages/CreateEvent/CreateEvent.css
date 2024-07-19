@@ -1,0 +1,22 @@
+.createEventPage {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+.createEventForm {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.CreateEventInputs {
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+}

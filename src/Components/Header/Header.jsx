@@ -19,10 +19,10 @@ const Header = () => {
         <div className="Header_page_navigations">
           <ul className="Header_page_navigations__list">
             <li className="Header_page_navigations__list__item">
-              <Link to="">Explore</Link>
+              <Link to="/explore">Explore</Link>
             </li>
             <li className="Header_page_navigations__list__item">
-              <Link to="">Create Event</Link>
+              <Link to="/createEvent">Create Event</Link>
             </li>
             <li className="Header_page_navigations__list__item">
               <Link to="">about Us</Link>

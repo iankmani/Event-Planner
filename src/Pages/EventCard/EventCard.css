@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+/* font-family: "DM Sans", sans-serif; */
+.card-container {
+  width: 300px;
+  overflow: hidden;
+  box-shadow: 0px 0px 15px -5px;
+  border-radius: 10px;
+  margin: 20px;
+}
+.image-container {
+  overflow: hidden;
+  height: 200px;
+}
+.card-content {
+  margin: 1rem;
+  /* margin-top: 0.5rem; */
+}
+.card-description {
+  font-size: 0.8rem;
+  color: green;
+}
+.card-content h1 {
+  font-family: "DM Sans", sans-serif;
+  color: blue;
+}
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+.card-title {
+  margin-bottom: 0.5rem;
+}
+.Image {
+  width: 100%;
+  height: 100%;
+}
+.card-date {
+  margin: 5px;
+}
+.card-location {
+  margin: 5px;
+}
+.card-description {
+  padding: 5px;
+}
