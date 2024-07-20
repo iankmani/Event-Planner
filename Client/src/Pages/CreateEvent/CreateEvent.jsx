@@ -1,30 +1,48 @@
 import React from "react";
 import useStore from "../../Store/store";
 import "./CreateEvent.css";
-import EventCard from "../EventCard/EventCard";
+
 const CreateEvent = () => {
-  const setEventCard = useStore((state) => state.setEventCard);
+  const addEvent = useStore((state) => state.addEvent);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { title, imageUrl, description, location, dateTime } =
-      e.target.elements;
-    setEventCard({
-      data: {
-        Title: title.value,
-        ImageUrl: imageUrl.value,
-        Description: description.value,
-        Location: location.value,
-        DateTime: dateTime.value,
-      },
-    });
+    const { title, imageUrl, description, location, dateTime } = e.target.elements;
 
-    // console.log(title.value)
-    // console.log(imageUrl.value)
-    // console.log(description.value)
-    // console.log(location.value)
-    // console.log(dateTime.value)
+    const newEvent = {
+      title: title.value,
+      imageUrl: imageUrl.value,
+      description: description.value,
+      location: location.value,
+      dateTime: dateTime.value,
+    };
+
+    console.log("Submitting event:", newEvent);
+    try {
+      const response = await fetch("http://localhost:3000/api/users/CreateEvent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEvent),
+      });
+
+      if (response.ok) {
+        const createdEvent = await response.json();
+        console.log("Created event:", createdEvent);
+        addEvent(createdEvent);
+        alert("Event created successfully");
+      } else {
+        const errorData = await response.json();
+        console.error("Error response:", errorData);
+        alert("Something went wrong");
+      }
+    } catch (error) {
+      console.error("Error creating event:", error);
+      alert("Error creating event");
+    }
   };
+
   return (
     <form onSubmit={handleSubmit} className="createEventPage">
       <div className="createEventForm">
@@ -33,40 +51,30 @@ const CreateEvent = () => {
           type="text"
           name="title"
           placeholder="Title"
-          // value={formData.Title}
-          // onChange={handleChange}
         />
         <input
           className="CreateEventInputs"
           type="text"
           name="imageUrl"
           placeholder="Image URL"
-          // value={formData.ImageUrl}
-          // onChange={handleChange}
         />
         <input
           className="CreateEventInputs"
           type="text"
           name="description"
           placeholder="Description"
-          // value={formData.Description}
-          // onChange={handleChange}
         />
         <input
           className="CreateEventInputs"
           type="text"
           name="location"
           placeholder="Location"
-          // value={formData.Location}
-          // onChange={handleChange}
         />
         <input
           className="CreateEventInputs"
           type="text"
           name="dateTime"
           placeholder="Date and Time"
-          // value={formData.DateTime}
-          // onChange={handleChange}
         />
         <button type="submit">Submit</button>
       </div>

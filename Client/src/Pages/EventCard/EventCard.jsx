@@ -1,32 +1,26 @@
-import React from "react";
-import "./EventCard.css";
-import { FaLocationDot } from "react-icons/fa6";
-import { MdOutlinePendingActions } from "react-icons/md";
-import useStore from "../../Store/store";
+import React from 'react';
+import './EventCard.css';
+import { FaLocationDot } from 'react-icons/fa6';
+import { MdOutlinePendingActions } from 'react-icons/md';
 
-const EventCard = () => {
-  const event = useStore((state) => state.eventCard);
+const EventCard = ({ title, imageUrl, description, location, dateTime }) => {
   return (
     <div className="card-container">
       <div className="image-container">
-        <img src={event.ImageUrl} alt={event.Title} className="Image" />
+        <img src={imageUrl} alt={title} className="image" />
       </div>
       <div className="card-content">
         <div className="card-title">
-          <h1>{event.Title}</h1>
+          <h1>{title}</h1>
         </div>
         <div className="card-description">
-          <p>{event.Description}</p>
+          <p>{description}</p>
         </div>
         <div className="card-location">
-          <p>
-            <FaLocationDot /> {event.Location}
-          </p>
+          <p><FaLocationDot /> {location}</p>
         </div>
         <div className="card-date">
-          <p>
-            <MdOutlinePendingActions /> {event.DateTime}
-          </p>
+          <p><MdOutlinePendingActions /> {dateTime}</p>
         </div>
       </div>
     </div>
