@@ -10,7 +10,9 @@ export const LoginUser = async (req, res) => {
       email: email,
     },
   });
-  res.json(LoggedInUser);
+  res
+    .status(400)
+    .json({ success: true, message: "Logged in Successfully", LoggedInUser });
   if (LoggedInUser) {
     const ComparedPassword = await bcrypt.compare(
       password,

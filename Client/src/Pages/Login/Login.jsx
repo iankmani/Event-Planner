@@ -1,9 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";  
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const Login = () => {
+  const navigate = useNavigate();  
+
+  const handleSubmit = async (formvalues) => {
+    try {
+      const response = await fetch("http://localhost:3000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formvalues),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.message === "Logged in Successfully") {
+        alert("Logged in successfully");
+        navigate("/explore");
+      } else {
+        alert(data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("An error occurred during login");
+    }
+  };
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Invalid email format")
@@ -13,15 +38,14 @@ const Login = () => {
       .min(4, "Password should be at least 4 characters")
       .max(8, "Password should be at most 20 characters"),
   });
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (formsubmission) => {
-      console.log(formsubmission);
-    },
     validationSchema: validationSchema,
+    onSubmit: handleSubmit,
   });
 
   return (
