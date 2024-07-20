@@ -2,9 +2,32 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./SignUp.css";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (formvalues) => {
+    try {
+      const response = await fetch("http://localhost:3000/api/users/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formvalues),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.message === "Signup successful") {
+        alert("Signed up successfully");
+        navigate("/login");
+      } else {
+        alert(data.message || "Sign up failed");
+      }
+    } catch (error) {
+      console.error("Error during sign-up:", error);
+      alert("An error occurred during sign-up");
+    }
+  };
+
   const validationSchema = Yup.object({
     firstname: Yup.string()
       .required("First Name is required")
@@ -20,7 +43,7 @@ const SignUp = () => {
     password: Yup.string()
       .required("Password is required")
       .min(4, "Password should be at least 4 characters")
-      .max(8, "Password should be at most 20 characters"),
+      .max(20, "Password should be at most 20 characters"),
     phonenumber: Yup.string()
       .required("Phone Number is required")
       .min(10, "Phone Number should be at least 10 characters"),
@@ -35,11 +58,10 @@ const SignUp = () => {
       password: "",
       phonenumber: "",
     },
-    onSubmit: (formsubmission) => {
-      console.log(formsubmission);
-    },
     validationSchema: validationSchema,
+    onSubmit: handleSubmit,
   });
+
   return (
     <div className="Signup_Page">
       <div className="signUp_title">
@@ -124,10 +146,10 @@ const SignUp = () => {
               ) : null}
             </div>
 
-            <button type="submit">sign up</button>
+            <button type="submit">Sign up</button>
 
             <p>
-              Already have an account? <Link to="/login">log in</Link>
+              Already have an account? <Link to="/login">Log in</Link>
             </p>
           </div>
         </form>
