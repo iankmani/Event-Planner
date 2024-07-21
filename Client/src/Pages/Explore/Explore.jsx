@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import EventCard from '../EventCard/EventCard';
 import useStore from '../../Store/store.js'; 
+import Header from '../../Components/Header/Header.jsx';
 import './Explore.css';
 
 const Explore = () => {
@@ -23,6 +24,8 @@ const Explore = () => {
   }, [setEvents]);
 
   return (
+    <>
+    <Header />
     <div className="explore-page">
       {events.length > 0 ? (
         events.map((event) => (
@@ -32,6 +35,7 @@ const Explore = () => {
         <p>No events found</p>
       )}
     </div>
+    </>
   );
 };
 

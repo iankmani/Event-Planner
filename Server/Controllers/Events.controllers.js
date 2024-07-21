@@ -24,14 +24,30 @@ export const CreateNewEvent = async (req, res) => {
 export const GetAllEvents = async (req, res) => {
   try {
     const events = await prisma.event.findMany();
+    res.status(200).json({
+      success: true,
+      message: "All Events are Successfully Listed Below",
+      events,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching events" });
+  }
+};
+
+export const DeleteEvent = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedEvent = await prisma.event.delete({
+      where: { id: id },
+    });
     res
       .status(200)
       .json({
         success: true,
-        message: "All Events are Successfully Listed Below",
-        events,
+        message: "Event Deleted Successfully",
+        deletedEvent,
       });
   } catch (error) {
-    res.status(500).json({ error: "Error fetching events" });
+    res.status(500).json({ success: false, message: error.message });
   }
 };

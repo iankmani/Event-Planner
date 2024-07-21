@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";  
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import './Login.css'
 
 const Login = () => {
   const navigate = useNavigate();  
@@ -49,7 +50,7 @@ const Login = () => {
   });
 
   return (
-    <div className="Signup_Page">
+    <div className="Login_Page">
       <div className="signUp_title">
         <h1>Login</h1>
       </div>

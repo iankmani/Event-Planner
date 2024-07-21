@@ -1,9 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import useStore from "../../Store/store";
+import Header from "../../Components/Header/Header";
+import axios from 'axios'
 import "./CreateEvent.css";
 
 const CreateEvent = () => {
+  const [imageInput, setImageInput] = useState()
   const addEvent = useStore((state) => state.addEvent);
+  const cloudname = "dblm8shnt";
+  const uploadPreset = "image Input";
+
+  const handleUploadImage = async ()=> {
+    const payload = new FormData();
+    payload.append('file', imageInput);
+    payload.append('upload_preset', uploadPreset);
+    console.log(imageInput)
+    try{
+      const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, payload)
+      console.log(response.data.secure_url)
+    }
+    catch(error){
+      console.log(error)
+      }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,6 +63,8 @@ const CreateEvent = () => {
   };
 
   return (
+    <>
+    <Header/>
     <form onSubmit={handleSubmit} className="createEventPage">
       <div className="createEventForm">
         <input
@@ -54,16 +75,23 @@ const CreateEvent = () => {
         />
         <input
           className="CreateEventInputs"
-          type="text"
+          type="file"
           name="imageUrl"
           placeholder="Image URL"
+          onChange={(e) =>{
+            setImageInput(
+              e.target.files[0]
+            )
+          }}
         />
+         <button onClick={handleUploadImage}>Upload Image</button>
         <input
           className="CreateEventInputs"
           type="text"
           name="description"
           placeholder="Description"
         />
+       
         <input
           className="CreateEventInputs"
           type="text"
@@ -79,6 +107,7 @@ const CreateEvent = () => {
         <button type="submit">Submit</button>
       </div>
     </form>
+    </>
   );
 };
 

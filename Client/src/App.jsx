@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
+        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<GetStarted />} />
           <Route path="/signup" element={<SignUp />} />
