@@ -24,3 +24,36 @@ export const RegisterUser = async (req, res) => {
     res.status(400).json({ success: false, message: e.message });
   }
 };
+
+export const DeleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleteduser = await prisma.user.delete({
+      where: { id: id },
+    });
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: "User deleted successfully",
+        deleteduser,
+      });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+export const GetAllUsers = async (req, res) => {
+  try {
+    const allusers = await prisma.user.findMany();
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: "All users fetched successfully",
+        allusers,
+      });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};

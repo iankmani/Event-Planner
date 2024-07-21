@@ -40,13 +40,11 @@ export const DeleteEvent = async (req, res) => {
     const deletedEvent = await prisma.event.delete({
       where: { id: id },
     });
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Event Deleted Successfully",
-        deletedEvent,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Event Deleted Successfully",
+      deletedEvent,
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
