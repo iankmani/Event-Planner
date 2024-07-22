@@ -57,6 +57,7 @@ const SignUp = () => {
       email: "",
       password: "",
       phonenumber: "",
+      role: "user"
     },
     validationSchema: validationSchema,
     onSubmit: handleSubmit,
@@ -129,6 +130,21 @@ const SignUp = () => {
               {formik.touched.phonenumber && formik.errors.phonenumber ? (
                 <div className="error">{formik.errors.phonenumber}</div>
               ) : null}
+            </div>
+            <div>
+            <select
+              name="role"
+              id="role"
+              value={formik.values.role}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            >
+              <option value="user">user</option>
+              <option value="admin">admin</option>
+            </select>
+            {formik.touched.role && formik.errors.role && 
+              <p>{formik.errors.role}</p>
+            }
             </div>
             <div>
               <label htmlFor="password">Password</label>

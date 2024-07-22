@@ -5,6 +5,10 @@ import { MdOutlinePendingActions } from 'react-icons/md';
 
 const EventCard = ({ title, imageUrl, description, location, dateTime }) => {
   return (
+
+
+
+    // <section className='card'>
     <div className="card-container">
       <div className="image-container">
         <img src={imageUrl} alt={title} className="image" />
@@ -23,7 +27,9 @@ const EventCard = ({ title, imageUrl, description, location, dateTime }) => {
           <p><MdOutlinePendingActions /> {dateTime}</p>
         </div>
       </div>
+
     </div>
+    // </section>
   );
 };
 

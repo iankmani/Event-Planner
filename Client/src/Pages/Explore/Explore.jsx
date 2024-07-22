@@ -1,42 +1,56 @@
-// Explore.js
-import React, { useEffect } from 'react';
-import EventCard from '../EventCard/EventCard';
-import useStore from '../../Store/store.js'; 
-import Header from '../../Components/Header/Header.jsx';
-import './Explore.css';
+import React, { useEffect, useState } from 'react'
+import EventCard from '../EventCard/EventCard'
+import { useEventStore } from '../../Store/EventStore'
+
+import "./Explore.css"
+import axios from 'axios'
+import Header from '../../Components/Header/Header'
 
 const Explore = () => {
-  const events = useStore((state) => state.events);
-  const setEvents = useStore((state) => state.setEvents);
+  const EventCards = useEventStore((state)=>state.EventCards);
+  console.log(EventCards)
+
+  const [events, setEvents] = useState([]);
+
+  const fetchEvents = async() => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/users/GetAllEvents`);
+      console.log(response.data.events)
+      setEvents(response.data.events)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/api/users/GetAllEvents');
-        const data = await response.json();
-        setEvents(data.events); 
-      } catch (error) {
-        console.error('Error fetching events:', error);
-      }
-    };
-
     fetchEvents();
-  }, [setEvents]);
-
+  }, [])
   return (
     <>
-    <Header />
-    <div className="explore-page">
-      {events.length > 0 ? (
-        events.map((event) => (
-          <EventCard key={event.id} {...event} />
-        ))
-      ) : (
-        <p>No events found</p>
-      )}
-    </div>
-    </>
-  );
-};
+    <Header/>
+    
+    <div className="explore-container">
+    
+   {events.map((event, i) => (
+      <>
+      <EventCard
+      title={event.title}
+      description={event.description}
+      imageUrl={event.imageUrl}
+      location={event.location}
+      dateTime={event.dateTime}
+      />
+      </>
 
-export default Explore;
+   )) }
+   </div>
+    
+
+
+      
+          </>
+     
+  )
+}
+
+export default Explore
