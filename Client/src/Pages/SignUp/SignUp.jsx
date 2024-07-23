@@ -5,6 +5,7 @@ import "./SignUp.css";
 import { useNavigate, Link } from "react-router-dom";
 import { toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {apiUrl} from "../../Utils/config.js"
 
 const SignUp = () => {
   const notifysucess = () => {
@@ -37,7 +38,7 @@ const notifyerror = () => {
 
   const handleSubmit = async (formvalues) => {
     try {
-      const response = await fetch("http://localhost:3000/api/users/register", {
+      const response = await fetch(`${apiUrl}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formvalues),
@@ -76,7 +77,6 @@ const notifyerror = () => {
     phonenumber: Yup.string()
       .required("Phone Number is required")
       .min(10, "Phone Number should be at least 10 characters"),
-    // .matches(/^[0-9]{10}$/, "Phone Number should be 10 digits"),
   });
 
   const formik = useFormik({

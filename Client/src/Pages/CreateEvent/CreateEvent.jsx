@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import "./CreateEvent.css";
 import { toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { apiUrl } from '../../Utils/config.js';
 
 const CreateEvent = () => {
   const notifysucess = () => {
@@ -59,7 +60,7 @@ transition: Bounce,
         dateTime: dateTime.value,
       };
 
-      const eventResponse = await fetch("http://localhost:3000/api/users/CreateEvent", {
+      const eventResponse = await fetch(`${apiUrl}/api/users/CreateEvent`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

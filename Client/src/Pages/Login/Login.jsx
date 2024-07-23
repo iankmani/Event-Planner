@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import './Login.css'
 import { toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { apiUrl } from "../../Utils/config.js";
 
 const Login = () => {
   const notifysucess = () => {
@@ -37,7 +38,7 @@ transition: Bounce,
 
   const handleSubmit = async (formvalues) => {
     try {
-      const response = await fetch("http://localhost:3000/api/users/login", {
+      const response = await fetch(`${apiUrl}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

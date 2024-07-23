@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import EventCard from '../EventCard/EventCard'
 import { useEventStore } from '../../Store/EventStore'
+import { apiUrl } from '../../Utils/config.js'
 
 import "./Explore.css"
 // import axios from 'axios'
@@ -15,7 +16,7 @@ const Explore = () => {
 
   const fetchEvents = async() => {
     try {
-      const response = await fetch(`http://localhost:3000/api/users/GetAllEvents`,{
+      const response = await fetch(`${apiUrl}/api/users/GetAllEvents`,{
         method: "GET",
         headers: {
           "Content-Type": "application/json",
