@@ -1,8 +1,31 @@
 import React from 'react'
 import logo from "../../assets/headerlogo.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {useUserStore} from '../../Store/UserStore'
+import { toast,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminHeader = () => {
+  const notifysucess = () => {
+    toast.success("You have been logged out!", {
+      position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "light",
+transition: Bounce,
+});
+}
+  const clearUser = useUserStore((state) => state.clearUser);
+  const navigate = useNavigate();
+  const handleLogOutUser = () => {
+    clearUser();
+    notifysucess();
+    navigate("/")
+  }
   return (
     <div className="admin-header">
     <div className="Header_page__container_top">
@@ -24,9 +47,9 @@ const AdminHeader = () => {
             <li className="Header_page_navigations__list__item">
               <Link to="#">Manage Users</Link>
             </li>
-            <li className="Header_page_navigations__list__item">
-              <Link to="/">Log Out</Link>
-            </li>
+            <button className="Header_page_navigations__list__item" onClick={handleLogOutUser}>
+              Log Out
+            </button>
           </ul>
         </div>
     </div>
