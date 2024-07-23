@@ -1,9 +1,19 @@
 import React from "react";
 import logo from "../../assets/headerlogo.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// import {user, clearUser} from '../../Store/UserStore.js'
+import {useUserStore} from '../../Store/UserStore'
+
 import "./Header.css";
 
 const Header = () => {
+  const clearUser = useUserStore((state) => state.clearUser);
+  const navigate =useNavigate();
+  const handleLogOutUser = ()=> {
+    clearUser();
+    navigate("/")
+
+  }
   return (
     <div className="Header_page">
       <div className="Header_page__container">
@@ -27,9 +37,9 @@ const Header = () => {
             <li className="Header_page_navigations__list__item">
               <Link to="/admin">about Us</Link>
             </li>
-            <li className="Header_page_navigations__list__item">
-              <Link to="/">Log Out</Link>
-            </li>
+            <button className="Header_page_navigations__list__item" onClick={handleLogOutUser}>
+              Log Out
+            </button>
           </ul>
         </div>
       </div>

@@ -13,8 +13,10 @@ const Login = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+
         },
         body: JSON.stringify(formvalues),
+        credentials: "include"
       });
       const data = await response.json();
       console.log(data);

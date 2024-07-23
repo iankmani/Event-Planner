@@ -1,4 +1,9 @@
 .explore-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
   border: 2px solid yellow;
   background-color: #f5f5f5;
   

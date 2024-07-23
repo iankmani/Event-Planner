@@ -3,7 +3,7 @@ import EventCard from '../EventCard/EventCard'
 import { useEventStore } from '../../Store/EventStore'
 
 import "./Explore.css"
-import axios from 'axios'
+// import axios from 'axios'
 import Header from '../../Components/Header/Header'
 
 const Explore = () => {
@@ -11,12 +11,21 @@ const Explore = () => {
   console.log(EventCards)
 
   const [events, setEvents] = useState([]);
+  
 
   const fetchEvents = async() => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/users/GetAllEvents`);
+      const response = await fetch(`http://localhost:3000/api/users/GetAllEvents`,{
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+          
+      });
+      const data = await response.json();
+      setEvents(data.events || []);
       console.log(response.data.events)
-      setEvents(response.data.events)
+      // setEvents(response.data.events)
     } catch (error) {
       console.log(error)
     }
@@ -34,6 +43,7 @@ const Explore = () => {
    {events.map((event, i) => (
       <>
       <EventCard
+      key={event.id}
       title={event.title}
       description={event.description}
       imageUrl={event.imageUrl}
