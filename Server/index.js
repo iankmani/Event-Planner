@@ -11,13 +11,12 @@ const app = express();
 const port = 3000;
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: "http://localhost:5173",
     methods: ["POST", "GET", "PATCH", "DELETE"],
     credentials: true,
-
   }),
 );
 

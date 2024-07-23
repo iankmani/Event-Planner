@@ -4,8 +4,36 @@ import Header from "../../Components/Header/Header";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "./CreateEvent.css";
+import { toast,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateEvent = () => {
+  const notifysucess = () => {
+    toast.success("Event Creation Successful", {
+      position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "light",
+transition: Bounce,
+});
+}
+  const notifyerror = () => {
+    toast.error("Event Creation Failed", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+      });
+  }
   const [imageInput, setImageInput] = useState();
   const addEventCard = useEventStore((state) => state.addEventCard);
   const cloudname = "dblm8shnt";
@@ -43,11 +71,13 @@ const CreateEvent = () => {
 
       const data = await eventResponse.json();
       addEventCard(data);
-      alert("Thanks for adding an Event")
+      notifysucess()
+      // alert("Thanks for adding an Event")
       navigate("/explore");
 
     } catch (error) {
       console.error("Error creating event:", error.message);
+      notifyerror()
     }
   };
 

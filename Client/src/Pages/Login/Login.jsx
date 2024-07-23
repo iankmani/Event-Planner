@@ -19,9 +19,7 @@ progress: undefined,
 theme: "light",
 transition: Bounce,
 });
-
-
-  }
+}
   const notifyerror = () => {
     toast.error("An error occured during Login", {
       position: "top-right",

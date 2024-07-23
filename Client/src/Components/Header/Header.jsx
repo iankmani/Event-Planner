@@ -3,14 +3,30 @@ import logo from "../../assets/headerlogo.jpeg";
 import { Link, useNavigate } from "react-router-dom";
 // import {user, clearUser} from '../../Store/UserStore.js'
 import {useUserStore} from '../../Store/UserStore'
+import { toast,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./Header.css";
 
 const Header = () => {
+  const notifysucess = () => {
+    toast.success("You have been logged out!", {
+      position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "light",
+transition: Bounce,
+});
+}
   const clearUser = useUserStore((state) => state.clearUser);
   const navigate =useNavigate();
   const handleLogOutUser = ()=> {
     clearUser();
+    notifysucess();
     navigate("/")
 
   }

@@ -3,8 +3,36 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./SignUp.css";
 import { useNavigate, Link } from "react-router-dom";
+import { toast,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
+  const notifysucess = () => {
+    toast.success("You have Signed In Successfully!", {
+      position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "light",
+transition: Bounce,
+});
+}
+const notifyerror = () => {
+  toast.error("An error occured during Login", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+}
   const navigate = useNavigate();
 
   const handleSubmit = async (formvalues) => {
@@ -17,14 +45,15 @@ const SignUp = () => {
       const data = await response.json();
       console.log(data);
       if (data.message === "Signup successful") {
-        alert("Signed up successfully");
+        notifysucess();
+        // alert("Signed up successfully");
         navigate("/login");
       } else {
-        alert(data.message || "Sign up failed");
+        notifyerror();
       }
     } catch (error) {
-      console.error("Error during sign-up:", error);
-      alert("An error occurred during sign-up");
+      console.log("Error during sign-up:", error);
+      notifyerror();
     }
   };
 
