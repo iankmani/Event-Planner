@@ -17,6 +17,9 @@ export const LoginUser = async (req, res) => {
       password,
       LoggedInUser.password,
     );
+    if(!ComparedPassword){
+      return res.status(401).json({message: "Invalid Credentials"})
+    }
     if (ComparedPassword){
       const payload = {
         id: LoggedInUser.id,

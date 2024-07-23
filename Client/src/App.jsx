@@ -10,6 +10,8 @@ import ManageEvents from "./Pages/ManageEvents/ManageEvents";
 import Admin from "./Admin/Admin";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <>
@@ -26,6 +28,7 @@ function App() {
           <Route path="/manage-events" element={<ManageEvents />} />
         </Routes>
         {/* <Footer /> */}
+        <ToastContainer />
       </BrowserRouter>
     </>
   );
