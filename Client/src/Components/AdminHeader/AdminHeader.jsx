@@ -19,7 +19,7 @@ const AdminHeader = () => {
               <Link to="/manage-events">Manage Events</Link>
             </li>
             <li className="Header_page_navigations__list__item">
-              <Link to="/createEvent">Create Event</Link>
+              <Link to="/admin-create-event">Create Event</Link>
             </li>
             <li className="Header_page_navigations__list__item">
               <Link to="#">Manage Users</Link>

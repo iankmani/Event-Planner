@@ -1,5 +1,6 @@
 import React from 'react'
 import EventCard from '../Pages/EventCard/EventCard'
+import AdminEventList from '../Pages/Explore/AdminEventList'
 import AdminHeader from '../Components/AdminHeader/AdminHeader'
 
 
@@ -10,7 +11,7 @@ const Admin = () => {
     <>
     <AdminHeader/>
     <div>
-        <EventCard />
+        <AdminEventList/>
 
     </div>
    

@@ -7,6 +7,7 @@ import Explore from "./Pages/Explore/Explore";
 import EventCard from "./Pages/EventCard/EventCard";
 import CreateEvent from "./Pages/CreateEvent/CreateEvent";
 import ManageEvents from "./Pages/ManageEvents/ManageEvents";
+import AdminCreateEvent from "./Pages/CreateEvent/AdminCreateEvent";
 import Admin from "./Admin/Admin";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/createEvent" element={<CreateEvent />} />
           <Route path="/event-card" element={<EventCard />} />
           <Route path="/manage-events" element={<ManageEvents />} />
+          <Route path="/admin-create-event" element={<AdminCreateEvent/>}/>
         </Routes>
         {/* <Footer /> */}
         <ToastContainer />
