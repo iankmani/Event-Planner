@@ -50,9 +50,9 @@ transition: Bounce,
             <li className="Header_page_navigations__list__item">
               <Link to="/createEvent">Create Event</Link>
             </li>
-            <li className="Header_page_navigations__list__item">
+            {/* <li className="Header_page_navigations__list__item">
               <Link to="/admin">about Us</Link>
-            </li>
+            </li> */}
             <button className="Header_page_navigations__list__item" onClick={handleLogOutUser}>
               Log Out
             </button>

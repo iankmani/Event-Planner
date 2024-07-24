@@ -45,13 +45,21 @@ const notifyerror = () => {
       });
       const data = await response.json();
       console.log(data);
+      
       if (data.message === "Signup successful") {
         notifysucess();
         // alert("Signed up successfully");
         navigate("/login");
-      } else {
-        notifyerror();
-      }
+      }else if(formvalues.role === "admin"){
+        notifysucess();
+          navigate("/admin")
+        }
+      else{
+        notifysucess();
+          navigate("/explore")
+        }
+     
+      
     } catch (error) {
       console.log("Error during sign-up:", error);
       notifyerror();

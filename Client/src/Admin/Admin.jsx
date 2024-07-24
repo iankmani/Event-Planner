@@ -1,6 +1,7 @@
 import React from 'react'
 import AdminEventList from '../Pages/Explore/AdminEventList'
 import AdminHeader from '../Components/AdminHeader/AdminHeader'
+import ManageEvents from '../Pages/ManageEvents/ManageEvents'
 
 
 
@@ -8,9 +9,10 @@ import AdminHeader from '../Components/AdminHeader/AdminHeader'
 const Admin = () => {
   return (
     <>
-    <AdminHeader/>
+    {/* <AdminHeader/> */}
     <div>
         <AdminEventList/>
+        <ManageEvents/>
 
     </div>
    
