@@ -48,7 +48,6 @@ const notifyerror = () => {
       
       if (data.message === "Signup successful") {
         notifysucess();
-        // alert("Signed up successfully");
         navigate("/login");
       }else if(formvalues.role === "admin"){
         notifysucess();

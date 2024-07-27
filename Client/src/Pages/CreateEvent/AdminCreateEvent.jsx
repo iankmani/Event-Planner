@@ -74,7 +74,6 @@ transition: Bounce,
       const data = await eventResponse.json();
       addEventCard(data);
       notifysucess()
-      // alert("Thanks for adding an Event")
       navigate("/manage-events");
 
     } catch (error) {

@@ -9,6 +9,8 @@ import CreateEvent from "./Pages/CreateEvent/CreateEvent";
 import ManageEvents from "./Pages/ManageEvents/ManageEvents";
 import AdminCreateEvent from "./Pages/CreateEvent/AdminCreateEvent";
 import Admin from "./Admin/Admin";
+import ManageUsers from "./Pages/ManageUsers/ManageUsers";
+import USerCard from "./UserCard/USerCard";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from 'react-toastify';
@@ -28,6 +30,8 @@ function App() {
           <Route path="/event-card" element={<EventCard />} />
           <Route path="/manage-events" element={<ManageEvents />} />
           <Route path="/admin-create-event" element={<AdminCreateEvent/>}/>
+          <Route path="/user-card" element={<USerCard/>}/>
+          <Route path="/manage-users" element={<ManageUsers />} />
         </Routes>
         {/* <Footer /> */}
         <ToastContainer />

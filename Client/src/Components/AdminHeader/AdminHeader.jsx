@@ -44,9 +44,9 @@ transition: Bounce,
             <li className="Header_page_navigations__list__item">
               <Link to="/admin-create-event">Create Event</Link>
             </li>
-            {/* <li className="Header_page_navigations__list__item">
-              <Link to="#">Manage Users</Link>
-            </li> */}
+            <li className="Header_page_navigations__list__item">
+              <Link to="/user-card">Manage Users</Link>
+            </li>
             <button className="Header_page_navigations__list__item" onClick={handleLogOutUser}>
               Log Out
             </button>
